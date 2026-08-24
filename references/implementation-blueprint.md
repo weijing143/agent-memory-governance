@@ -52,6 +52,18 @@ User:  可以/好/行        → batch execution / 批量执行
        拒绝              → no repeated prompting / 不重复追问
 ```
 
+## 5b. Source Snapshot Retention / 原始资料留存
+
+When an archive entry draws conclusions from external sources, store the dated raw material next to the conclusion so it stays re-verifiable after links rot:
+
+当归档条目从外部来源得出结论时，随结论留存带日期的原始资料：
+
+- **Raw snapshots / 原始快照:** API JSON, fetched HTML/SSR data, key page text captured at analysis time. `analysis/snapshots/YYYY-MM-DD-<source>-<id>.<json|html|txt>`
+- **Formal documents / 正式文档:** PDFs of cited papers/whitepapers/reports. `analysis/<subject>/YYYY-MM/papers/<author>-<id>-<title>.pdf`
+- Link from the analysis via **relative path**; capture date is mandatory in the filename.
+- **Do NOT retain process artifacts** (downloaded media, transcripts, temp screenshots) — those follow the 6–24h cleanup rule. Only raw material worth long-term re-verification is kept.
+- **Opt-in by value:** ephemeral news whose value decays with time need not be snapshotted.
+
 ## 6. Governance Cadence / 治理节奏
 
 | Cadence | Action |

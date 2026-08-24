@@ -1,6 +1,6 @@
 ---
 name: agent-memory-governance
-version: 1.2.0
+version: 1.2.3
 description: Provide principles for an Agent to design its own long-term memory, archive, Skill, and conversation-retention workflow; keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries. This Skill guides reasoning only and does not prescribe or perform a fixed workflow.
 ---
 
@@ -110,6 +110,9 @@ Use evidence such as user statements, references, timestamps, duplication, repro
 
 - **Old-memory archive / 旧记忆归档:** A dedicated category for memory entries deleted after user confirmation. Each record carries: original entry text, deletion reason, successor (if any), archive date, and reuse hint. The category itself means "superseded fact" — reference only, never a current claim. This removes the ambiguity between old and new preferences: the archived entry is a tombstone with a verdict, not a live claim.
   删除的旧记忆条目入专用"旧记忆归档"分类：每条记录含 原条目全文 + 删除原因 + 取代者（如有）+ 归档日期 + 复用线索。该分类语义 = "旧版事实，已被取代"，仅作溯源、不得当作现行主张——旧偏好与新偏好并存时的歧义由此消除。
+
+- **Source snapshot retention / 原始资料留存:** When an archive entry draws conclusions from external sources (API responses, fetched HTML, official PDFs, datasets), preserve the dated raw material alongside the conclusion. External links rot, interfaces change, and pages get deleted; a stored snapshot makes the conclusion re-verifiable offline. Distinguish two kinds: (a) **raw snapshots** — API JSON / HTML / text captured at analysis time; (b) **formal documents** — PDFs of cited papers/whitepapers/reports. Name files with the capture date (`YYYY-MM-DD-<source>-<id>.<ext>`) and link them from the analysis via relative paths. Process artifacts (downloaded media, transcripts, temp screenshots) are NOT retained — only raw material worth long-term re-verification. Retention is opt-in by value; do not hoard ephemeral news.
+  当归档条目从外部来源（API 响应、抓取的 HTML、官方 PDF、数据集）得出结论时，随结论留存带日期的原始资料。外链会失效、接口会改版、页面会删除，留存快照让结论可离线复核。区分两类：(a) **原始快照**——分析时获取的 API JSON/HTML/文本；(b) **正式文档**——引用论文/白皮书/报告的 PDF。文件名带采集日期（`YYYY-MM-DD-<来源>-<id>.<ext>`），并在分析文件里用相对路径链接。过程产物（下载的音视频、转写稿、临时截图）不留存——只有值得长期复核的原始材料才留。按价值选择是否留存，不要囤积时效性快讯。
 
 ## Health Indicators / 健康指标参考值
 

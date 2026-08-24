@@ -2,6 +2,19 @@
 
 All notable changes to this project.
 
+## [1.2.3] - 2026-08-24
+
+### Added
+
+- Semi-automated deployment reference (`references/semi-automated-pattern.md`): conflict-blocking state machine, minimal conflict detection, rollback and audit patterns for unattended pipelines — 半自动落地参考：冲突阻塞状态机、最小冲突检测、回滚与审计
+- Source snapshot retention principle (SKILL.md + blueprint §5b): keep dated raw API/HTML snapshots and cited PDFs alongside conclusions, with naming rules; process artifacts excluded — 原始资料留存原则：结论随附带日期的原始快照与引用 PDF
+- Expanded `references/openclaw-invocation.md`: three-zone path mapping, zero-token cron executors, health-check adaptation, deployment checklist — OpenClaw 部署参考扩充
+- Runtime-adaptation note in `scripts/memory_health.py` (Hermes conventions vs other runtimes) — health 脚本多运行时适配说明
+
+### Fixed
+
+- Version number consistency: SKILL.md frontmatter bumped from 1.2.0 to 1.2.3 to match CHANGELOG — 版本号一致
+
 ## [1.2.2] - 2026-08-24
 
 ### Added

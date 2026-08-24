@@ -4,6 +4,15 @@
 Prints per-file stats: entry count, chars, capacity %, and flags for
 suspicious entries (contains a year => stale-prone; >300 chars => overlong).
 Pure stdlib, no dependencies. Exit 0 always (watchdog-friendly).
+
+RUNTIME ADAPTATION NOTE: This script is calibrated for Hermes conventions —
+it reads exactly MEMORY.md + USER.md from ~/.hermes/memories, splits entries
+on the section marker '\u00a7', and uses Hermes char limits. Other runtimes
+(OpenClaw, etc.) inject a different set of files and may not use '\u00a7'.
+When porting, adjust: (1) MEM_DIR / FILES to your injected file set and their
+limits; (2) SPLIT_RE to your entry delimiter (heading / list item / line);
+the capacity thresholds (<85% healthy / 85-95% review / >95% urgent) and the
+year + overlong signals remain valid across runtimes.
 """
 import os
 import re
