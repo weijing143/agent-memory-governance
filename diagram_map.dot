@@ -1,0 +1,39 @@
+digraph G {
+  graph [rankdir=TB, bgcolor=white, fontname="WenQuanYi Zen Hei", fontsize=13, nodesep=0.4, ranksep=0.5, pad=0.3];
+  node [fontname="WenQuanYi Zen Hei", fontsize=11, style="rounded,filled", color="#64748B", penwidth=1.2, shape=box, margin="0.15,0.08"];
+  edge [color="#94A3B8", arrowsize=0.6];
+
+  root [label="agent-memory-governance\n治理原则 · 权威源", shape=folder, fillcolor="#1E293B", fontcolor="white", fontsize=13, penwidth=2];
+
+  subgraph cluster_facade {
+    label="门面与记录 (3)"; style="rounded"; color="#3B82F6"; fontcolor="#1D4ED8"; fontsize=12;
+    readme [label="README.md\n项目门面"];
+    changelog [label="CHANGELOG.md\n变更记录"];
+    license [label="LICENSE\nMIT 协议"];
+    readme -> changelog [style=invis];
+    changelog -> license [style=invis];
+  }
+
+  skill [label="SKILL.md\n核心本体 v1.2.2\n原则 / 裁剪模式 / 健康指标", fillcolor="#DCFCE7", color="#16A34A"];
+
+  subgraph cluster_impl {
+    label="参考实现 (1)"; style="rounded"; color="#8B5CF6"; fontcolor="#6D28D9"; fontsize=12;
+    script [label="scripts/memory_health.py\n健康检查参考实现", fillcolor="#F3E8FF", color="#8B5CF6"];
+  }
+
+  subgraph cluster_refs {
+    label="实施参考 (4)"; style="rounded"; color="#F59E0B"; fontcolor="#B45309"; fontsize=12;
+    integ [label="Hermes 落地指南"];
+    report [label="实践验证报告\n(8 条教训)"];
+    blueprint [label="实施蓝图"];
+    openclaw [label="OpenClaw 部署"];
+    integ -> report [style=invis];
+    report -> blueprint [style=invis];
+    blueprint -> openclaw [style=invis];
+  }
+
+  root -> readme;
+  root -> skill;
+  root -> script;
+  root -> integ;
+}

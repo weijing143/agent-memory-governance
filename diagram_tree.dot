@@ -1,0 +1,33 @@
+digraph G {
+  graph [rankdir=TB, bgcolor=white, fontname="WenQuanYi Zen Hei", fontsize=13, nodesep=0.3, ranksep=0.4, pad=0.3];
+  node [fontname="WenQuanYi Zen Hei", fontsize=11, style="rounded,filled", color="#64748B", penwidth=1.2, shape=box, margin="0.15,0.08"];
+  edge [color="#94A3B8", arrowsize=0.6];
+
+  root [label="agent-memory-governance\n(私有仓库 · main · v1.2.2)", shape=folder, fillcolor="#1E293B", fontcolor="white", fontsize=13, penwidth=2];
+
+  skill  [label="SKILL.md\n治理指南本体", fillcolor="#DCFCE7", color="#16A34A"];
+  readme [label="README.md\n双语简介 + 结构图"];
+  changelog [label="CHANGELOG.md\n版本记录"];
+  license [label="LICENSE\nMIT 协议"];
+
+  scripts_dir [label="scripts/", shape=folder, fillcolor="#F3E8FF", color="#8B5CF6"];
+  script [label="memory_health.py\n健康检查脚本\n(纯标准库)", fillcolor="#F3E8FF", color="#8B5CF6"];
+
+  refs_dir [label="references/", shape=folder, fillcolor="#FEF3C7", color="#F59E0B"];
+  integ  [label="hermes-integration.md\nHermes 落地指南"];
+  report [label="hermes-practice-report.md\n实践验证报告 (8 条教训)"];
+  blueprint [label="implementation-blueprint.md\n实施蓝图"];
+  openclaw [label="openclaw-invocation.md\nOpenClaw 部署说明"];
+
+  root -> skill;
+  root -> readme;
+  root -> changelog;
+  root -> license;
+  root -> scripts_dir;
+  root -> refs_dir;
+  scripts_dir -> script;
+  refs_dir -> integ;
+  refs_dir -> report;
+  refs_dir -> blueprint;
+  refs_dir -> openclaw;
+}

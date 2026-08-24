@@ -31,6 +31,12 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
     └── hermes-practice-report.md   # Measured results & lessons (2026-08-24) / 实践验证报告
 ```
 
+### Structure Diagrams / 结构图
+
+![Repository tree / 目录树状图](assets/diagrams/tree.png)
+
+![Repository map / 结构关系图](assets/diagrams/map.png)
+
 ## Platform Support / 平台适配
 
 | Platform | How it fits / 接入方式 | Verified / 验证状态 |
