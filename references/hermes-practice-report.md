@@ -35,3 +35,15 @@ This report records how the principles in `SKILL.md` were actually implemented o
 This report contains methods, metrics, and process lessons only — no private memory contents, no server internals, no personal data. The repository itself remains private until the project is complete.
 
 本报告仅含方法、指标与流程教训——不含任何隐私记忆内容、服务器内部信息或个人数据。仓库在项目完成前保持私有。
+
+## Update 2026-08-24 — v1.2.0 / 更新
+
+- **Old-memory archive landed** / 旧记忆归档落地：deleted memory entries now go to a dedicated 旧记忆归档 category with a full record (original text + deletion reason + successor + date + reuse hint); the "superseded" semantics resolves old-vs-new preference ambiguity.
+- **Snapshot dating landed** / 快照标注落地：volatile facts (versions, quotas, service states, audit results) carry @YYYY-MM markers; the health script flags them as Review candidates as they age — staleness is visible by design.
+- **Tailoring decision** / 裁剪决策：three repo rules (conflict-blocking, retention state machine, rollback plan) were deliberately NOT adopted. This pipeline is fully human-gated (every write/archive/delete passes user confirmation), so blocking rules are redundant — the human is the conflict-resolution mechanism. Now documented as "Tailoring Modes" in SKILL.md v1.2.0.
+- **Current measured state** / 当前水位：MEMORY.md 82.5% / USER.md 80.1%, both healthy; all governance scripts verified exit-0.
+
+### New lessons / 新教训
+
+5. **Whole-entry replacement trap.** The `memory` tool's `replace` identifies an entry by substring but replaces the ENTIRE entry — a partial edit accidentally truncated entry content (restored same day). Fix: on replace, always supply the complete new entry text. 整条替换陷阱：replace 按子串定位但整条替换——须提供完整新条目文本。
+6. **Tailor rules to automation level.** Generic governance rules are defensive; a fully human-gated pipeline can safely drop blocking rules. Applying universal rules without checking the pipeline's gating adds ceremony without protection. 规则按自动化程度裁剪：人审制管线可安全去掉堵截类规则。

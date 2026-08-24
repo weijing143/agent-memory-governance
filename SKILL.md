@@ -1,6 +1,6 @@
 ---
 name: agent-memory-governance
-version: 1.1.0
+version: 1.2.0
 description: Provide principles for an Agent to design its own long-term memory, archive, Skill, and conversation-retention workflow; keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries. This Skill guides reasoning only and does not prescribe or perform a fixed workflow.
 ---
 
@@ -83,6 +83,17 @@ These are design options, not a required workflow.
 
 这些只是设计选项，不是必须遵循的工作流。
 
+## Tailoring Modes / 裁剪模式
+
+The blocking rules (conflict-blocking, retention state machines, pre-planned rollbacks) are defensive: they exist because unattended automation might silently resolve, overwrite, or expire data. Choose rules by how much human gating your pipeline actually has:
+
+堵截类规则（冲突阻塞、保留状态机、回滚预案）本质是防御性的——它们的存在是因为无人值守的自动化可能静默化解、覆盖或过期数据。按管线真实的人工把关程度选择规则：
+
+- **Human-gated mode / 人审制:** every write, archive, and delete passes explicit user confirmation. The human is the conflict-resolution mechanism — conflict-blocking, retention state machines, and pre-planned rollback procedures can be safely dropped. Core remains: three-zone separation, direct contradiction display, archive-before-delete, explicit confirmation.
+  **人审制：** 每次写入/归档/删除都经用户明确确认——人本身就是冲突解决机制，冲突阻塞、保留状态机、回滚预案可安全去掉。核心保留：三区隔离、直接展示矛盾、先归档后删除、明确确认。
+- **Semi-automated mode / 半自动:** unattended automation can write, promote, overwrite, or expire data (cron governance, auto-archivers, background curators). Keep the full rule set: conflict-blocking, retention periods with grace/expiry states, approval + rollback + audit + verification.
+  **半自动：** 存在无人值守自动化（cron 治理、自动归档、后台 curators）——保留全部规则：冲突阻塞、含宽限期/过期状态的保留周期、审批+回滚+审计+验证。
+
 ## Classification Guidance / 分类指导
 
 - **Keep / 保留:** Active, unique, current, referenced, protected, or system-provided.
@@ -97,6 +108,9 @@ Use evidence such as user statements, references, timestamps, duplication, repro
 - **Reuse hint / 复用线索:** At archive time, add a one-line hint stating when this item will be needed again (e.g. "写综述/引用时用"). This makes future value explicit and improves retrieval.
   归档时补一行"复用线索"：说明这条在什么场景会被再次需要——把未来价值显式化，提升检索效率。
 
+- **Old-memory archive / 旧记忆归档:** A dedicated category for memory entries deleted after user confirmation. Each record carries: original entry text, deletion reason, successor (if any), archive date, and reuse hint. The category itself means "superseded fact" — reference only, never a current claim. This removes the ambiguity between old and new preferences: the archived entry is a tombstone with a verdict, not a live claim.
+  删除的旧记忆条目入专用"旧记忆归档"分类：每条记录含 原条目全文 + 删除原因 + 取代者（如有）+ 归档日期 + 复用线索。该分类语义 = "旧版事实，已被取代"，仅作溯源、不得当作现行主张——旧偏好与新偏好并存时的歧义由此消除。
+
 ## Health Indicators / 健康指标参考值
 
 Reference thresholds (not mandates) — calibrate to your own storage:
@@ -110,6 +124,7 @@ Reference thresholds (not mandates) — calibrate to your own storage:
 Other signals / 其他信号：
 
 - Entries containing a date or version number tend to go stale → flag as Review candidates. 含日期/版本号的条目易过时——标为 Review 候选。
+- Volatile facts (versions, quotas, service states, audit results) should carry snapshot dates (@YYYY-MM). A dated volatile fact becomes a Review candidate when its snapshot is old; an undated volatile fact is a hidden staleness risk. 易变事实（版本、配额、服务状态、审计结果）应带快照日期（@YYYY-MM）——快照过旧即 Review 候选；无日期的易变数字是隐形的过期风险。
 - Entries >300 chars are prone to bloat → consider splitting or trimming. 超长条目（>300 字符）易臃肿——考虑拆分或精简。
 - Cross-file duplication (same fact in active memory and archive) → merge only with user confirmation. 跨文件重复——合并需用户确认。
 - Cadence reference: silent threshold-triggered watchdog + periodic review (weekly report / monthly full review) + event-driven checks after important work. 节奏参考：静默看门狗（阈值触发）+ 定期复盘（周报/月报）+ 事件驱动（重要工作后）。

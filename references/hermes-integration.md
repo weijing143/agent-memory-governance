@@ -41,8 +41,10 @@ The isolation boundary is made executable via a routing table and promotion/demo
   **路由**：长期偏好、身份、环境事实、工具用法、活跃项目状态 → 活跃记忆（`MEMORY.md`）；具体内容、来源、分析、一次性结论 → 归档（`~/wiki`）或会话历史。session_search 可检索的内容不重复写入活跃记忆（最多留指针）。
 - **Demotion** / 降级：during governance cleanup, Review/Delete candidates are archived to `~/wiki` first (after user confirmation), then removed — archive before delete.
   **降级**：治理清理时，Review/Delete 候选先归档到 `~/wiki`（用户确认后）再移除——归档先于删除。
+  Deleted memory entries go to the dedicated 旧记忆归档 category (`~/wiki/wiki/collections/memory-archive.md`) with a full record (original text, reason, successor, date, reuse hint) — the category itself means "superseded". 删除的旧记忆入专用"旧记忆归档"分类（`~/wiki/wiki/collections/memory-archive.md`），带完整记录（原条目/原因/取代者/日期/复用线索）——分类语义即"已被取代"。
 - **Promotion** / 晋升：a stable fact recurring in wiki/sessions is promoted to active memory only after explicit user confirmation.
   **晋升**：wiki/会话中反复出现且已稳定的关键事实，仅在用户明确确认后升级为活跃记忆。
+- **Snapshot dating** / 快照标注：volatile facts in active memory carry snapshot dates (@YYYY-MM); as they age, the health script flags them as Review candidates. 活跃记忆中的易变事实带快照日期（@YYYY-MM）；随时间变旧，健康脚本将其标记为 Review 候选。
 
 ## Archive Workflow Linkage / 归档流程联动
 
