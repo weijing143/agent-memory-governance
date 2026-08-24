@@ -2,6 +2,19 @@
 
 All notable changes to this project.
 
+## [1.2.1] - 2026-08-24
+
+### Fixed
+
+- README repository layout now lists `references/implementation-blueprint.md` and `scripts/` — 目录结构补全
+- README lesson count corrected 5 → 6 (v1.2.0 added two lessons) — 教训计数修正
+- Dangling `scripts/memory_health.py` reference resolved: script now ships in the repo as the authoritative copy — 悬空脚本引用修复
+- Blueprint scope note: blocking rules (§4) apply to semi-automated deployments; Hermes runs human-gated — 蓝图适用范围注明
+
+### Removed
+
+- Unverified `agents/openai.yaml` (OpenClaw format never tested); OpenClaw config documented solely in `openclaw-invocation.md` until verified — 移除未经实测的 OpenClaw 配置
+
 ## [1.2.0] - 2026-08-24
 
 ### Added

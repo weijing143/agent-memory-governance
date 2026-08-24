@@ -20,8 +20,8 @@ A companion Hermes skill implements these principles as an executable workflow:
 
 - **Skill: `memory-governance`** — health check → Keep/Review/Archive/Delete classification → candidate list for user decision → batch execution only after user confirmation. Never auto-deletes.
   **技能 `memory-governance`** — 健康检查 → Keep/Review/Archive/Delete 分级 → 候选清单交用户裁决 → 用户确认后批量执行。绝不自动删除。
-- **Script: `scripts/memory_health.py`** — per-file entry count, char usage, capacity %, flags stale-prone (year-bearing) and overlong entries. Pure stdlib.
-  **脚本 `scripts/memory_health.py`** — 统计条目数、字符占用、容量百分比，标记含日期（易过期）与超长条目。纯标准库。
+- **Script: `scripts/memory_health.py`** — per-file entry count, char usage, capacity %, flags stale-prone (year-bearing) and overlong entries. Pure stdlib. The repo copy is authoritative; the Hermes skill embeds the same file.
+  **脚本 `scripts/memory_health.py`** — 统计条目数、字符占用、容量百分比，标记含日期（易过期）与超长条目。纯标准库。仓库副本为权威源，Hermes 技能内置同款。
 - **Cron watchdog: `~/.hermes/scripts/memory_watchdog.py`** — monthly; silent unless a memory file reaches ≥90% of its char limit, then reports and suggests governance.
   **定时看门狗 `~/.hermes/scripts/memory_watchdog.py`** — 每月运行；记忆文件容量 ≥90% 才发预警报告并建议治理，平时静默。
 

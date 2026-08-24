@@ -22,9 +22,10 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
 
 ```
 ├── SKILL.md                        # The governance guide itself / 治理指南本体
-├── agents/
-│   └── openai.yaml                 # OpenClaw agent interface config / OpenClaw 适配
+├── scripts/
+│   └── memory_health.py            # Health-check script (stdlib, reference impl) / 健康检查脚本
 └── references/
+    ├── implementation-blueprint.md # Implementation templates / 实施模板
     ├── openclaw-invocation.md      # OpenClaw deployment notes / OpenClaw 部署说明
     ├── hermes-integration.md       # Hermes Agent integration guide / Hermes 落地指南
     └── hermes-practice-report.md   # Measured results & lessons (2026-08-24) / 实践验证报告
@@ -40,6 +41,6 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
 
 ## Verified in Practice / 实践验证
 
-Landing on Hermes Agent (2026-08-24): memory capacity **99% → 79%**, retrieval across taxonomy zones verified, deleted entries recoverable from session history. Full details and five hard-won lessons in [`references/hermes-practice-report.md`](references/hermes-practice-report.md).
+Landing on Hermes Agent (2026-08-24): memory capacity **99% → 79%**, retrieval across taxonomy zones verified, deleted entries recoverable from session history. Full details and six hard-won lessons in [`references/hermes-practice-report.md`](references/hermes-practice-report.md).
 
-已在 Hermes Agent 实际落地验证（2026-08-24）：记忆占用 **99% → 79%**，跨分类区检索验证通过，已删条目可从会话历史找回。完整细节与五条经验教训见[实践报告](references/hermes-practice-report.md)。
+已在 Hermes Agent 实际落地验证（2026-08-24）：记忆占用 **99% → 79%**，跨分类区检索验证通过，已删条目可从会话历史找回。完整细节与六条经验教训见[实践报告](references/hermes-practice-report.md)。

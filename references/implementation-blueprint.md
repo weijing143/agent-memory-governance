@@ -4,6 +4,8 @@ Practical templates validated on Hermes Agent (2026-08-24, see `hermes-practice-
 
 在 Hermes Agent 上实践验证过的落地模板（2026-08-24，见实践报告）。以此为起点，按自身运行环境调整——是示例而非规定。
 
+Scope note / 适用范围：validated on a human-gated (人审制) Hermes pipeline; blocking-style rules (§4 conflict blocking, §7 rollback) target semi-automated deployments — see SKILL.md "Tailoring Modes". 在 Hermes（人审制）管线验证；阻塞类规则（§4 冲突阻塞、§7 回滚）面向半自动部署——见 SKILL.md"裁剪模式"。
+
 ## 1. Classification Decision Table / 分级决策表
 
 | Suggestion / 建议 | Signals / 信号 |
@@ -39,7 +41,7 @@ Rules: show the list, wait for user decision, never act on it yourself. 只出�
 可选解决：<options>
 ```
 
-Rules: never silently pick the newest claim; never merge conflicting sources; block automatic processing until the user decides. 不静默选最新、不合并冲突来源，用户裁决前阻塞自动处理。
+Rules: never silently pick the newest claim; never merge conflicting sources; block automatic processing until the user decides (semi-automated mode — in human-gated pipelines there is no unattended processing to block). 不静默选最新、不合并冲突来源，用户裁决前阻塞自动处理（半自动模式——人审制下无无人值守处理可阻塞）。
 
 ## 5. Archive Confirmation Dialogue / 归档确认对话
 

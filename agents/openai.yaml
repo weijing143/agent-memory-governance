@@ -1,6 +1,0 @@
-interface:
-  display_name: "Agent Memory Governance / Agent 记忆治理"
-  short_description: "Guide Agent memory and archive policy / 指导记忆与归档策略"
-  default_prompt: "Use agent-memory-governance to design your own memory, archive, conflict, and retention workflow. Do not modify data by default. / 使用本 Skill 自主设计记忆、归档、冲突和保留周期工作流，默认不要修改数据。"
-policy:
-  allow_implicit_invocation: false
