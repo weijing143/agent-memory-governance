@@ -1,5 +1,6 @@
 ---
 name: agent-memory-governance
+version: 1.1.0
 description: Provide principles for an Agent to design its own long-term memory, archive, Skill, and conversation-retention workflow; keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries. This Skill guides reasoning only and does not prescribe or perform a fixed workflow.
 ---
 
@@ -93,8 +94,37 @@ Use evidence such as user statements, references, timestamps, duplication, repro
 
 应综合用户陈述、引用关系、时间戳、重复情况、可复现性和时效性判断。不得擅自选择最新主张、合并冲突来源，或把归档当作当前指令。
 
+- **Reuse hint / 复用线索:** At archive time, add a one-line hint stating when this item will be needed again (e.g. "写综述/引用时用"). This makes future value explicit and improves retrieval.
+  归档时补一行"复用线索"：说明这条在什么场景会被再次需要——把未来价值显式化，提升检索效率。
+
+## Health Indicators / 健康指标参考值
+
+Reference thresholds (not mandates) — calibrate to your own storage:
+
+容量阈值参考（非强制，按自身存储校准）：
+
+- **<85%** — healthy / 健康
+- **85–95%** — review; produce a Keep/Review/Archive/Delete candidate list for the user / 预警：出分级候选清单交用户
+- **>95%** — urgent; prioritize governance / 紧急：优先治理
+
+Other signals / 其他信号：
+
+- Entries containing a date or version number tend to go stale → flag as Review candidates. 含日期/版本号的条目易过时——标为 Review 候选。
+- Entries >300 chars are prone to bloat → consider splitting or trimming. 超长条目（>300 字符）易臃肿——考虑拆分或精简。
+- Cross-file duplication (same fact in active memory and archive) → merge only with user confirmation. 跨文件重复——合并需用户确认。
+- Cadence reference: silent threshold-triggered watchdog + periodic review (weekly report / monthly full review) + event-driven checks after important work. 节奏参考：静默看门狗（阈值触发）+ 定期复盘（周报/月报）+ 事件驱动（重要工作后）。
+
+## Confirmation Modes / 确认模式
+
+- **Full confirmation / 完整确认:** each item confirmed individually. 逐条确认。
+- **Low-friction confirmation / 低摩擦确认:** user pre-authorizes a category and replies with simple affirmatives ("可以"/"好"/"ok") → batch execution. Reading or analyzing a link is still NOT consent; only explicit user words count. 用户预授权分类 + 简单肯定语（可以/好/ok）= 批量执行。阅读/分析链接仍不等于同意，只有用户明确话语才算。
+
 ## Safety Boundary / 安全边界
 
 This Skill guides the Agent; it is not a background cleaner and does not erase provider-side memory, chat history, or hidden application state.
 
 本 Skill 只指导 Agent，不是后台清理程序，也不会删除平台侧记忆、聊天记录或隐藏应用状态。
+
+High-impact actions (beyond deletion) also require explicit user confirmation and a permitted executor: visibility changes (e.g. making a repository public), batch rewrites, permission changes, mass moves. Recommended three-step confirmation: ① explicit, unambiguous user intent ② confirmed readiness/completion status ③ required audits clean. Never default-assume on high-impact actions from ambiguous instructions.
+
+高影响动作（不止删除）同样需要用户明确确认与获准执行器——可见性变更（如仓库转公开）、批量改写、权限变更、批量移动。推荐三步确认：① 用户明确无歧义的意图 ② 就绪/完成状态已确认 ③ 必要审计干净。禁止在歧义指令下对高影响动作做默认假设。
