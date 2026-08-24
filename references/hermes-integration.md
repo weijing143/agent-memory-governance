@@ -31,6 +31,19 @@ Unlike the OpenClaw setup (user-invocable only, `disable-model-invocation: true`
 
 与 OpenClaw 配置（仅用户可调用、禁止模型自动调用）不同，Hermes 按相关性加载技能。`memory-governance` 在用户说"整理记忆 / 记忆健康 / 记忆满了"或记忆容量 ≥85% 时触发。技能只产出建议、执行用户确认的动作，绝不在后台自行清理。
 
+## Three-Zone Routing / 三区路由与升降级
+
+The isolation boundary is made executable via a routing table and promotion/demotion channels (implemented in the `memory-governance` skill under "三区路由与升降级"):
+
+隔离边界通过路由表与升降级通道可执行化（实现于 `memory-governance` 技能"三区路由与升降级"章节）：
+
+- **Routing** / 路由：long-term preferences, identity, environment facts, tool usage, active project state → active memory (`MEMORY.md`); concrete content, sources, analysis, one-off conclusions → archive (`~/wiki`) or session history. Anything retrievable via session_search is NOT duplicated into active memory (pointer at most).
+  **路由**：长期偏好、身份、环境事实、工具用法、活跃项目状态 → 活跃记忆（`MEMORY.md`）；具体内容、来源、分析、一次性结论 → 归档（`~/wiki`）或会话历史。session_search 可检索的内容不重复写入活跃记忆（最多留指针）。
+- **Demotion** / 降级：during governance cleanup, Review/Delete candidates are archived to `~/wiki` first (after user confirmation), then removed — archive before delete.
+  **降级**：治理清理时，Review/Delete 候选先归档到 `~/wiki`（用户确认后）再移除——归档先于删除。
+- **Promotion** / 晋升：a stable fact recurring in wiki/sessions is promoted to active memory only after explicit user confirmation.
+  **晋升**：wiki/会话中反复出现且已稳定的关键事实，仅在用户明确确认后升级为活跃记忆。
+
 ## Archive Workflow Linkage / 归档流程联动
 
 The "ask whether to archive" principle is merged with Hermes' existing wiki collection workflow (llm-wiki, `~/wiki`) into a single channel: after economics/finance/work/law/science/tech/programming/AI/link-analysis work, the Agent proactively suggests `归档到[分类]？`; a simple affirmative (可以/好/行) triggers the full collection flow (collections page + raw/notes snapshot + index/log). The user may change the category or decline — no repeated prompting.
