@@ -45,5 +45,6 @@ This report contains methods, metrics, and process lessons only — no private m
 
 ### New lessons / 新教训
 
-5. **Whole-entry replacement trap.** The `memory` tool's `replace` identifies an entry by substring but replaces the ENTIRE entry — a partial edit accidentally truncated entry content (restored same day). Fix: on replace, always supply the complete new entry text. 整条替换陷阱：replace 按子串定位但整条替换——须提供完整新条目文本。
-6. **Tailor rules to automation level.** Generic governance rules are defensive; a fully human-gated pipeline can safely drop blocking rules. Applying universal rules without checking the pipeline's gating adds ceremony without protection. 规则按自动化程度裁剪：人审制管线可安全去掉堵截类规则。
+6. **Whole-entry replacement trap.** The `memory` tool's `replace` identifies an entry by substring but replaces the ENTIRE entry — a partial edit accidentally truncated entry content (restored same day). Fix: on replace, always supply the complete new entry text. 整条替换陷阱：replace 按子串定位但整条替换——须提供完整新条目文本。
+7. **Tailor rules to automation level.** Generic governance rules are defensive; a fully human-gated pipeline can safely drop blocking rules. Applying universal rules without checking the pipeline's gating adds ceremony without protection. 规则按自动化程度裁剪：人审制管线可安全去掉堵截类规则。
+8. **Dangling terminal cwd.** The terminal tool persists the working directory across sessions; deleting a directory while standing inside it leaves a dangling cwd pointer, so subsequent commands fail with `cd: No such file` errors (exit 126). Fix: `cd` out of a directory before deleting it (e.g. `cd /tmp && rm -rf /tmp/xxx`). 终端 cwd 悬空：工具跨会话持久化工作目录，站在目录里删掉它会产生悬空指针，后续命令全部 cd 失败刷错。修复：删目录前先 cd 出去。

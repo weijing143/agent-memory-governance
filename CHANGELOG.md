@@ -2,6 +2,17 @@
 
 All notable changes to this project.
 
+## [1.2.2] - 2026-08-24
+
+### Added
+
+- Practice report lesson 8: dangling terminal cwd (cd out before deleting directories) — 实践报告第 8 条教训（终端 cwd 悬空）
+
+### Fixed
+
+- Duplicate lesson numbering in the practice report (new lessons renumbered 5→6, 6→7) — 实践报告新教训编号与原有 1–5 撞号，已改为 6/7
+- README lesson count corrected to 8 (5 original + 3 new) — README 教训计数修正为八条
+
 ## [1.2.1] - 2026-08-24
 
 ### Fixed
