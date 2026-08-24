@@ -28,7 +28,8 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
     ├── implementation-blueprint.md # Implementation templates / 实施模板
     ├── openclaw-invocation.md      # OpenClaw deployment notes / OpenClaw 部署说明
     ├── hermes-integration.md       # Hermes Agent integration guide / Hermes 落地指南
-    └── hermes-practice-report.md   # Measured results & lessons (2026-08-24) / 实践验证报告
+    ├── hermes-practice-report.md   # Measured results & lessons (2026-08-24) / 实践验证报告
+    └── semi-automated-pattern.md   # Semi-automated deployment reference / 半自动落地参考
 ```
 
 ### Structure Diagrams / 结构图

@@ -3,7 +3,7 @@ digraph G {
   node [fontname="WenQuanYi Zen Hei", fontsize=11, style="rounded,filled", color="#64748B", penwidth=1.2, shape=box, margin="0.15,0.08"];
   edge [color="#94A3B8", arrowsize=0.6];
 
-  root [label="agent-memory-governance\n(私有仓库 · main · v1.2.2)", shape=folder, fillcolor="#1E293B", fontcolor="white", fontsize=13, penwidth=2];
+  root [label="agent-memory-governance\n(私有仓库 · main · v1.2.3)", shape=folder, fillcolor="#1E293B", fontcolor="white", fontsize=13, penwidth=2];
 
   skill  [label="SKILL.md\n治理指南本体", fillcolor="#DCFCE7", color="#16A34A"];
   readme [label="README.md\n双语简介 + 结构图"];
@@ -18,6 +18,7 @@ digraph G {
   report [label="hermes-practice-report.md\n实践验证报告 (8 条教训)"];
   blueprint [label="implementation-blueprint.md\n实施蓝图"];
   openclaw [label="openclaw-invocation.md\nOpenClaw 部署说明"];
+  semi [label="semi-automated-pattern.md\n半自动落地参考"];
 
   root -> skill;
   root -> readme;
@@ -30,4 +31,5 @@ digraph G {
   refs_dir -> report;
   refs_dir -> blueprint;
   refs_dir -> openclaw;
+  refs_dir -> semi;
 }

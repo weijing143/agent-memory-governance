@@ -14,7 +14,7 @@ digraph G {
     changelog -> license [style=invis];
   }
 
-  skill [label="SKILL.md\n核心本体 v1.2.2\n原则 / 裁剪模式 / 健康指标", fillcolor="#DCFCE7", color="#16A34A"];
+  skill [label="SKILL.md\n核心本体 v1.2.3\n原则 / 裁剪模式 / 健康指标", fillcolor="#DCFCE7", color="#16A34A"];
 
   subgraph cluster_impl {
     label="参考实现 (1)"; style="rounded"; color="#8B5CF6"; fontcolor="#6D28D9"; fontsize=12;
@@ -22,14 +22,16 @@ digraph G {
   }
 
   subgraph cluster_refs {
-    label="实施参考 (4)"; style="rounded"; color="#F59E0B"; fontcolor="#B45309"; fontsize=12;
+    label="实施参考 (5)"; style="rounded"; color="#F59E0B"; fontcolor="#B45309"; fontsize=12;
     integ [label="Hermes 落地指南"];
     report [label="实践验证报告\n(8 条教训)"];
     blueprint [label="实施蓝图"];
     openclaw [label="OpenClaw 部署"];
+    semi [label="半自动落地参考"];
     integ -> report [style=invis];
     report -> blueprint [style=invis];
     blueprint -> openclaw [style=invis];
+    openclaw -> semi [style=invis];
   }
 
   root -> readme;

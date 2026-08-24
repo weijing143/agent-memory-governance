@@ -93,6 +93,7 @@ The blocking rules (conflict-blocking, retention state machines, pre-planned rol
   **人审制：** 每次写入/归档/删除都经用户明确确认——人本身就是冲突解决机制，冲突阻塞、保留状态机、回滚预案可安全去掉。核心保留：三区隔离、直接展示矛盾、先归档后删除、明确确认。
 - **Semi-automated mode / 半自动:** unattended automation can write, promote, overwrite, or expire data (cron governance, auto-archivers, background curators). Keep the full rule set: conflict-blocking, retention periods with grace/expiry states, approval + rollback + audit + verification.
   **半自动：** 存在无人值守自动化（cron 治理、自动归档、后台 curators）——保留全部规则：冲突阻塞、含宽限期/过期状态的保留周期、审批+回滚+审计+验证。
+  Reference implementation: `references/semi-automated-pattern.md`. 参考落地实现见 `references/semi-automated-pattern.md`。
 
 ## Classification Guidance / 分类指导
 
