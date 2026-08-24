@@ -2,6 +2,12 @@
 
 All notable changes to this project.
 
+## [1.2.4] - 2026-08-24
+
+### Fixed
+
+- OpenClaw verification status: marked as verified (real deployment test 2026-08-24) in README and `openclaw-invocation.md`; Codex remains pending — OpenClaw 验证状态修正（实测部署 2026-08-24），Codex 仍待验证
+
 ## [1.2.3] - 2026-08-24
 
 ### Added

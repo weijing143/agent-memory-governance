@@ -1,5 +1,7 @@
 # OpenClaw Invocation & Deployment / OpenClaw 部署参考
 
+> Verification status / 验证状态：✅ 已在 OpenClaw 实测部署验证（2026-08-24）。
+
 > 配套 `hermes-integration.md`，说明本 Skill 在 OpenClaw 运行时的调用方式与三区落地。OpenClaw 与 Hermes 的注入模型不同：多个根级 markdown 文件自动注入 system prompt，不只有 MEMORY/USER。
 
 ## 1. Skill 元数据
