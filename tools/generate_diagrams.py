@@ -66,7 +66,7 @@ def draw_tree():
         ax.plot([x1, x2], [y1, y2], color="#94A3B8", linewidth=1.2, zorder=0)
 
     # Root
-    node(8, 7.2, "agent-memory-governance\n(main · v1.2.3 · MIT)", "#1E293B", width=3.4, text_color="white")
+    node(8, 7.2, "agent-memory-governance\n(main · v1.2.5 · MIT)", "#1E293B", width=3.4, text_color="white")
 
     # Level 1: top-level files
     node(2.0, 5.8, "SKILL.md\n治理指南本体", "#DCFCE7", width=2.2)
@@ -144,7 +144,7 @@ def draw_map():
                                     connectionstyle="arc3,rad=0.05"))
 
     # Central principle source
-    box(6.5, 7.0, 3.2, 0.9, "SKILL.md v1.2.3\n治理原则权威源", "#DCFCE7", "#16A34A", 10)
+    box(6.5, 7.0, 3.2, 0.9, "SKILL.md v1.2.5\n治理原则权威源", "#DCFCE7", "#16A34A", 10)
 
     # Facade layer
     box(2.2, 5.6, 2.0, 0.7, "README.md\n项目门面", "#DBEAFE", "#3B82F6", 9)

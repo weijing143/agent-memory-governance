@@ -1,0 +1,30 @@
+name: Feature / Platform Request
+ description: Suggest a new feature, platform guide, or improvement
+ title: "[Feature] "
+ labels: ["enhancement"]
+ body:
+   - type: markdown
+     attributes:
+       value: |
+         Suggest a change that aligns with the project's goal: principles, not a fixed workflow.
+   - type: textarea
+     id: problem
+     attributes:
+       label: Problem or Opportunity
+       description: What is missing or could be improved?
+     validations:
+       required: true
+   - type: textarea
+     id: proposal
+     attributes:
+       label: Proposal
+       description: Describe your idea and how it fits the three-zone governance model.
+     validations:
+       required: true
+   - type: checkboxes
+     id: principles
+     attributes:
+       label: Alignment
+       options:
+         - label: This proposal keeps active memory, reference archive, and transient conversation separate.
+         - label: This proposal does not introduce automated deletion or archiving without user confirmation.

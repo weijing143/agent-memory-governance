@@ -1,6 +1,6 @@
 ---
 name: agent-memory-governance
-version: 1.2.3
+version: 1.2.5
 description: Provide principles for an Agent to design its own long-term memory, archive, Skill, and conversation-retention workflow; keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries. This Skill guides reasoning only and does not prescribe or perform a fixed workflow.
 ---
 

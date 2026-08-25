@@ -1,5 +1,9 @@
 # Agent Memory Governance / Agent 记忆治理
 
+[![CI](https://github.com/weijing143/agent-memory-governance/actions/workflows/ci.yml/badge.svg)](https://github.com/weijing143/agent-memory-governance/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.2.5-blue.svg)](CHANGELOG.md)
+
 A governance guide for long-running AI agents: keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries.
 
 长期运行 Agent 的记忆治理指南：活跃记忆与参考归档隔离、冲突必须展示、遗忘边界由用户确认。
@@ -10,6 +14,28 @@ Agents accumulate memory without discipline — bloat, silent overwrites, contra
 
 Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾。本仓库提供**原则而非固定流程**：每个 Agent 基于自身工具与存储自行设计实现。
 
+## Quick Start / 快速开始
+
+This is a **Skill / 技能**，not a library. Pick your platform:
+
+- **Hermes Agent** — copy `SKILL.md` into your skills directory and read `references/hermes-integration.md` for storage mapping and cadence.
+- **OpenClaw** — deploy as a user-invocable skill (`$agent-memory-governance`); see `references/openclaw-invocation.md` for frontmatter, path mapping, and cron setup.
+
+To run the reference health check:
+
+```bash
+# Default Hermes conventions
+python scripts/memory_health.py
+
+# Custom runtime (example)
+python scripts/memory_health.py \
+  --mem-dir ./memories \
+  --files "MEMORY.md:memory_char_limit,USER.md:user_char_limit" \
+  --limits "memory_char_limit=8000,user_char_limit=4000" \
+  --delimiter "\\n# " \
+  --no-config
+```
+
 ## Core Principles / 核心原则
 
 1. **Three-zone isolation** — active memory / reference archive / transient conversation stay separate. 三区隔离：活跃记忆 / 参考归档 / 临时对话。
@@ -17,6 +43,12 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
 3. **Archive requires confirmation** — reading a link is not consent. 归档必须明确确认，阅读≠同意。
 4. **Archive before delete** — deletion needs explicit confirmation and a permitted executor. 归档先于删除，删除需确认。
 5. **Age is not evidence** — old content can still matter. 仅凭时间不能证明内容不重要。
+
+## What This Is Not / 这不是什么
+
+- **Not an automatic cleaner.** This Skill only guides reasoning; it does not move, rewrite, archive, or delete data by itself.
+- **Not a platform memory eraser.** It does not erase provider-side memory, chat history, or hidden application state.
+- **Not a fixed schema or command set.** Agents must design their own workflow from their own tools and runtime.
 
 ## Repository Layout / 目录结构
 
@@ -66,18 +98,9 @@ Run tests locally:
 python -m unittest discover -s tests -v
 ```
 
-Run the health check against a custom runtime (example for OpenClaw):
-
-```bash
-python scripts/memory_health.py \
-  --mem-dir ./memories \
-  --files "MEMORY.md:memory_char_limit,USER.md:user_char_limit" \
-  --limits "memory_char_limit=8000,user_char_limit=4000" \
-  --delimiter "\\n# " \
-  --no-config
-```
-
 CI runs on every push/PR via `.github/workflows/ci.yml`.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to contribute.
 
 ## Platform Support / 平台适配
 

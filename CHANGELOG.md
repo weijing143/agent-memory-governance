@@ -2,7 +2,7 @@
 
 All notable changes to this project.
 
-## [Unreleased]
+## [1.2.5] - 2026-08-25
 
 ### Added
 
@@ -10,12 +10,14 @@ All notable changes to this project.
 - Unit tests for `memory_health.py` in `tests/test_memory_health.py` — 新增单元测试
 - GitHub Actions CI (`.github/workflows/ci.yml`) running tests and diagram generation — 持续集成
 - `tools/generate_diagrams.py` for regenerating `tree.png` / `map.png` without Graphviz — 图表绘制工具
+- Open-source readiness: README badges, Quick Start, CONTRIBUTING.md, issue templates, and SECURITY.md — 开源准备
 
 ### Changed
 
 - Moved diagram generation from `scripts/` to `tools/` to keep `scripts/` focused on runtime scripts — 图表工具独立到 tools/ 目录
 - `tools/generate_diagrams.py` now auto-detects CJK fonts across Windows, Linux, and macOS — 跨平台中文字体自动探测
 - Updated `README.md` repository layout and added Development section — README 目录结构与开发说明更新
+- Bumped version to 1.2.5 across `SKILL.md`, README badge, and generated diagrams — 版本号统一
 
 ## [1.2.4] - 2026-08-24
 
