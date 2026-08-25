@@ -21,7 +21,7 @@ All notable changes to this project.
 
 ### Fixed
 
-- OpenClaw verification status: marked as verified (real deployment test 2026-08-24) in README and `openclaw-invocation.md`; Codex remains pending — OpenClaw 验证状态修正（实测部署 2026-08-24），Codex 仍待验证
+- OpenClaw verification status: marked as verified (real deployment test 2026-08-24) in README and `openclaw-invocation.md` — OpenClaw 验证状态修正（实测部署 2026-08-24）
 
 ## [1.2.3] - 2026-08-24
 
@@ -78,7 +78,7 @@ All notable changes to this project.
 - Confirmation modes: full vs low-friction batch (simple affirmatives) — 确认模式：完整 vs 低摩擦批量
 - High-impact action boundary: visibility changes, batch rewrites, permission changes, mass moves — with recommended three-step confirmation — 高影响动作边界与三步确认
 - Implementation blueprint (`references/implementation-blueprint.md`) — 实施蓝图
-- Platform verification status in README (Hermes verified; OpenClaw/Codex pending) — 平台验证状态
+- Platform verification status in README (Hermes verified; OpenClaw pending) — 平台验证状态
 
 ## [1.0.0] - 2026-08
 

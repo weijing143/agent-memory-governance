@@ -6,7 +6,7 @@
 
 ## 1. Skill 元数据
 
-OpenClaw 的 skill 元数据放在 `SKILL.md` frontmatter（注意：Codex 风格的校验器只接受它支持的 key，OpenClaw 专属字段放在 `metadata.openclaw` 下）：
+OpenClaw 的 skill 元数据放在 `SKILL.md` frontmatter（OpenClaw 专属字段放在 `metadata.openclaw` 下）：
 
 ```yaml
 ---

@@ -84,7 +84,6 @@ CI runs on every push/PR via `.github/workflows/ci.yml`.
 | Platform | How it fits / 接入方式 | Verified / 验证状态 |
 |---|---|---|
 | **OpenClaw** | User-invocable only, model-invocation disabled (`$agent-memory-governance`) — see `openclaw-invocation.md` | ✅ 已验证 2026-08-24（OpenClaw 实测部署） |
-| **Codex** | `SKILL.md` uses standard frontmatter — drop it into your skills dir | ⏳ 待验证 |
 | **Hermes Agent** | Companion `memory-governance` skill + health scripts + cron cadence — see `hermes-integration.md` | ✅ 已验证 2026-08-24（见 practice report） |
 
 ## Verified in Practice / 实践验证

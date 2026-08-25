@@ -8,7 +8,7 @@ Pure stdlib, no dependencies. Exit 0 always (watchdog-friendly).
 RUNTIME ADAPTATION NOTE: Default behavior is calibrated for Hermes conventions —
 it reads MEMORY.md + USER.md from ~/.hermes/memories, splits entries on the
 section marker '\u00a7', and uses Hermes char limits. Other runtimes
-(OpenClaw, Codex, etc.) can override paths, files, limits, and delimiter via
+(OpenClaw, etc.) can override paths, files, limits, and delimiter via
 command-line options.
 
 Capacity thresholds (<85% healthy / 85-95% review / >95% urgent) and the
