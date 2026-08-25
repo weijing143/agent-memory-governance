@@ -16,7 +16,9 @@ Agent 的记忆会无纪律地膨胀——臃肿、静默覆盖、自相矛盾�
 
 ## Quick Start / 快速开始
 
-This is a **Skill / 技能**，not a library. Pick your platform:
+This is a **Skill / 技能**，not a library. Although it provides principles rather than fixed code, `SKILL.md` follows the standard Skill format and can be loaded directly by Hermes Agent and OpenClaw.
+
+虽然本项目提供的是原则而非固定代码，但 `SKILL.md` 采用标准 Skill 格式封装，可直接被 Hermes / OpenClaw 加载使用。Pick your platform:
 
 - **Hermes Agent** — copy `SKILL.md` into your skills directory and read `references/hermes-integration.md` for storage mapping and cadence.
 - **OpenClaw** — deploy as a user-invocable skill (`$agent-memory-governance`); see `references/openclaw-invocation.md` for frontmatter, path mapping, and cron setup.
