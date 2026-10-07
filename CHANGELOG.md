@@ -2,6 +2,16 @@
 
 All notable changes to this project.
 
+## [1.3.0] - 2026-10-07
+
+### Added
+
+- Health status labels in `memory_health.py` output: HEALTHY <85% / REVIEW 85–95% / URGENT >95%, per file plus a `worst_status` rollup — 输出新增健康等级判定（单文件 + 全局最差状态）
+- `--strict` flag: exit 1 when any file is URGENT, enabling cron/CI alerting (default exit stays 0) — 严格模式：任一文件 URGENT 时退出码为 1，便于告警
+- `--json` flag: machine-readable report (per-file stats, status, flags, worst_status) — JSON 机器可读输出
+- Flagged entries now carry a 1-based entry index (`FLAG #3: ...`) for quick location — FLAG 带条目序号，便于定位问题条目
+- Repository description set on GitHub — 补充 GitHub 仓库简介
+
 ## [1.2.5] - 2026-08-25
 
 ### Added

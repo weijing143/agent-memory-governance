@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/weijing143/agent-memory-governance/actions/workflows/ci.yml/badge.svg)](https://github.com/weijing143/agent-memory-governance/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.5-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](CHANGELOG.md)
 
 A governance guide for long-running AI agents: keep active memory separate from reference archives, surface contradictions, and define user-confirmed forgetting boundaries.
 
@@ -36,6 +36,18 @@ python scripts/memory_health.py \
   --limits "memory_char_limit=8000,user_char_limit=4000" \
   --delimiter "\\n# " \
   --no-config
+```
+
+Each file is classified by capacity: **HEALTHY** <85% / **REVIEW** 85–95% / **URGENT** >95%, and flags carry a 1-based entry index for quick location. For cron/CI use:
+
+每个文件按容量分级：**HEALTHY** <85% / **REVIEW** 85–95% / **URGENT** >95%，FLAG 带条目序号便于定位。cron/CI 场景可用：
+
+```bash
+# Exit 1 when any file is URGENT (alerting) / 任一文件 URGENT 时退出码为 1
+python scripts/memory_health.py --strict
+
+# Machine-readable output / 机器可读输出
+python scripts/memory_health.py --json
 ```
 
 ## Core Principles / 核心原则

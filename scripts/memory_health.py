@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Memory health check for long-running Agent memories.
 
-Prints per-file stats: entry count, chars, capacity %, and flags for
-suspicious entries (contains a year => stale-prone; >300 chars => overlong).
-Pure stdlib, no dependencies. Exit 0 always (watchdog-friendly).
+Prints per-file stats: entry count, chars, capacity %, a health status
+(HEALTHY <85% / REVIEW 85-95% / URGENT >95%), and flags for suspicious
+entries (contains a year => stale-prone; >300 chars => overlong), each
+located by 1-based entry index.
+Pure stdlib, no dependencies. Exit 0 by default (watchdog-friendly);
+use --strict to exit 1 when any file is URGENT, and --json for
+machine-readable output.
 
 RUNTIME ADAPTATION NOTE: Default behavior is calibrated for Hermes conventions —
 it reads MEMORY.md + USER.md from ~/.hermes/memories, splits entries on the
@@ -15,6 +19,7 @@ Capacity thresholds (<85% healthy / 85-95% review / >95% urgent) and the
 year + overlong signals remain valid across runtimes.
 """
 import argparse
+import json
 import os
 import re
 import sys
@@ -23,6 +28,18 @@ MEM_DIR = os.path.expanduser("~/.hermes/memories")
 DEFAULT_LIMITS = {"memory_char_limit": 4000, "user_char_limit": 2500}
 DEFAULT_FILES = {"MEMORY.md": "memory_char_limit", "USER.md": "user_char_limit"}
 DEFAULT_DELIMITER = "\n\u00a7"
+
+# Capacity status thresholds: <85% healthy / 85-95% review / >95% urgent.
+STATUS_ORDER = ["HEALTHY", "REVIEW", "URGENT"]
+
+
+def classify(pct):
+    """Map a capacity percentage to a health status label."""
+    if pct > 95:
+        return "URGENT"
+    if pct >= 85:
+        return "REVIEW"
+    return "HEALTHY"
 
 
 def read_limits(cfg_path):
@@ -74,7 +91,7 @@ def analyze(path, limit, delimiter):
     total = len(content)
     pct = round(total / limit * 100, 1) if limit else 0.0
     flags = []
-    for e in entries:
+    for idx, e in enumerate(entries, 1):
         marks = []
         m = re.search(r"(20\d\d)", e)
         if m:
@@ -82,13 +99,20 @@ def analyze(path, limit, delimiter):
         if len(e) > 300:
             marks.append("超长>300")
         if marks:
-            flags.append((e[:40].replace("\n", " "), ",".join(marks)))
+            flags.append(
+                {
+                    "index": idx,
+                    "marks": marks,
+                    "preview": e[:40].replace("\n", " "),
+                }
+            )
     return {
         "file": os.path.basename(path),
         "entries": len(entries),
         "chars": total,
         "limit": limit,
         "pct": pct,
+        "status": classify(pct),
         "flags": flags,
     }
 
@@ -127,6 +151,16 @@ def build_parser():
         action="store_true",
         help="Do not read limits from --config; use --limits or defaults only.",
     )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Exit 1 when any file is URGENT (>95%% capacity); default exit is always 0.",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print machine-readable JSON instead of human-readable text.",
+    )
     return parser
 
 
@@ -154,18 +188,39 @@ def main(argv=None):
         if r:
             results.append(r)
 
-    if not results:
-        print("NO_MEMORY_FILES")
-        return 0
-
+    worst = None
     for r in results:
-        print(
-            f"[{r['file']}] {r['entries']} entries | "
-            f"{r['chars']}/{r['limit']} chars | {r['pct']}%"
-        )
-        for e, fl in r["flags"]:
-            print(f"  FLAG: {fl} -> {e}")
+        if worst is None or STATUS_ORDER.index(r["status"]) > STATUS_ORDER.index(worst):
+            worst = r["status"]
 
+    if args.json:
+        print(
+            json.dumps(
+                {
+                    "files": results,
+                    "worst_status": worst,
+                    "strict": bool(args.strict),
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+    elif not results:
+        print("NO_MEMORY_FILES")
+    else:
+        for r in results:
+            print(
+                f"[{r['file']}] {r['status']} | {r['entries']} entries | "
+                f"{r['chars']}/{r['limit']} chars | {r['pct']}%"
+            )
+            for flag in r["flags"]:
+                print(
+                    f"  FLAG #{flag['index']}: {','.join(flag['marks'])}"
+                    f" -> {flag['preview']}"
+                )
+
+    if args.strict and worst == "URGENT":
+        return 1
     return 0
 
 
